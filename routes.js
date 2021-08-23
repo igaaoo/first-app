@@ -20,7 +20,7 @@ router.get('/about', (req, res) => {
 router.get('/cadastro', (req, res) => {
   res.render('pages/cadastro', { users: users });
   console.log("Acessou o Cadastro");
-})
+});
 
 router.post('/cadastro/update', (req, res) => {
   users[req.body.id].name = req.body.name;
@@ -32,12 +32,60 @@ router.post('/cadastro/update', (req, res) => {
 
   console.log("Dados recebidos: ", req.body);
   res.sendStatus(200);
-})
+});
 
 router.get('/cadastro/list', (req, res) => {
   //lista de usuarios cadastrado
 });
 
+router.post('/cadastro/add',(req,res)=>{
+  let user={name:"",email:"",address:"",heigth:"",age:"",vote:""};
+
+  user.name = req.body._name;
+  user.email = req.body._email;
+  user.address = req.body._address;
+  user.heigth = req.body._heigth;
+  user.age = req.body._age;
+  user.vote = req.body._vote;
+
+  users.push(user);
+  console.log("Usuário cadastrado: ",user);
+  console.log("Lista dos usuários: ",users)
+  res.sendStatus(200);
+
+});
+
+router.post('/cadastro/remove',(req,res)=>{
+  //let item =req.body.id; //pega o valor passado através do parâmetro id e atribui a variável item. 
+  let name = req.body.name;
+
+  if(users.length==0){
+      console.log("Erro: Não há elemento a ser removido!");
+      return res.status(400).json({
+          status:'error',
+          error:`Removed element: ${name}`
+      });
+
+  } else {
+      for(let cont=0;cont<users.length;cont++){
+          if(users[cont].name==name){
+              users.splice(cont,1);
+              console.log("Elemento Removido: ",name);
+              return res.status(200).json({
+                  status:'sucess',
+                  data:users
+              });
+              //res.send(JSON.stringify({sucess:`Elemento removido com sucesso: ${name}`}));
+          } else if(cont==users.length-1){
+              console.log("Erro ao remover elemento: ",name);
+              return res.status(400).json({
+                  status:'error',
+                  error:`Removed element: ${name}`
+              });
+          }
+      }
+  }
+});
 
 //Essa linha permite que este código seja exportado como um módulo e possa ser usado em outras partes da aplicação.
 module.exports = router;
