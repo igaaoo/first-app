@@ -32,10 +32,12 @@ router.post('/cadastro/update', (req, res) => {
 
   console.log("Dados recebidos: ", req.body);
   res.sendStatus(200);
+  console.log("Atualizou um cadastro");
 });
 
-router.get('/cadastro/list', (req, res) => {
-  //lista de usuarios cadastrado
+router.get('/list', (req, res) => {
+  res.render('pages/list');
+  console.log("Acessou a lista");
 });
 
 router.post('/cadastro/add',(req,res)=>{
@@ -52,13 +54,13 @@ router.post('/cadastro/add',(req,res)=>{
   console.log("Usuário cadastrado: ",user);
   console.log("Lista dos usuários: ",users)
   res.sendStatus(200);
-
+  console.log("Adicionou um usuário");
 });
 
 router.post('/cadastro/remove',(req,res)=>{
   //let item =req.body.id; //pega o valor passado através do parâmetro id e atribui a variável item. 
   let name = req.body.name;
-
+  console.log("Removeu um usuário");
   if(users.length==0){
       console.log("Erro: Não há elemento a ser removido!");
       return res.status(400).json({

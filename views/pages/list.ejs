@@ -1,0 +1,60 @@
+<%- contentFor( 'body') %>
+<style>
+    div h2{
+        margin-top: 20px;
+    }
+</style>
+<div>
+    <h2>Usuários Cadastrados</h2>
+    <p>Lista de usuários Cadastrados no sistema.</p> 
+    <table class="table table-hover bg-light" id="list">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Email</th>
+            <th>Idade</th>
+            <th>Altura</th>
+            <th>Vota?</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% if(users.length >0){%>
+                <% for(let index=0;index<users.length;index++){ %>
+                    <tr data-index-row="<%= index %>">
+                        
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].name %></span>
+
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].email %></span>
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].address %></span>
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].age %></span>
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].heigth %></span>
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].vote %></span>
+                        
+                    </td>
+                    <td data-index-row="<%=index%>" class="hidden" data-index-row="<%=index%>">
+                    </td>
+                    
+                    </tr>
+                <% } //for %>
+            <% }else{%>
+                <tr><td colspan="7"><p class="bg-info text-white">Nenhum dado cadastrado</p></td></tr>
+            <%} //If-Else %>
+        </tbody>
+    </table>
+</div>
