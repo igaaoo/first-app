@@ -1,41 +1,58 @@
-<%- contentFor( 'body') %>
+<%- contentFor( 'body' ) %>
 
-<style>
-    div h2{
-        margin-top: 20px;
-    }
-</style>
-<div class="table-responsive-xl ">
-    <h2>Cadastrar Novo Usuário</h2>
-    <p>Preencha os dados para cadastrar um novo usuário</p>
-    <form action="/cadastro/add" method="post" style="margin-bottom: 20px;">
+    <style>
+        div h2 {
+            margin-top: 20px;
+        }
+
+        .form-group a {
+            color: white;
+            background-color: #818181;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .form-group a:hover{
+            color: white;
+            text-decoration: none;
+            background-color: #646464;
+            
+        }
+    </style>
+
+        <h2>Cadastrar Novo Usuário</h2>
+        <p>Preencha os dados para cadastrar um novo usuário</p>
+        <form action="/cadastro/add" method="post" style="margin-bottom: 20px;">
+            <div class="form-group">
+                <label for="_name">Nome:</label>
+                <input type="text" name="_name" id="_name" class="form-control" placeholder="Ex: Igor Neves">
+            </div>
+            <div class="form-group">
+                <label for="_email">E-mail:</label>
+                <input type="email" name="_email" id="_email" class="form-control" placeholder="Ex: igor@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="_address">Endereço:</label>
+                <input type="text" name="_address" id="_address" class="form-control" placeholder="Ex: 540 Rua Brasil">
+            </div>
+            <div class="form-group">
+                <label for="_height">Altura:</label>
+                <input type="number" name="_height" id="_height" class="form-control" placeholder="Ex: 1.80" min="0" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="_age">Idade:</label>
+                <input type="number" name="_age" id="_age" class="form-control" placeholder="Ex: 20">
+            </div>
+            <div class="form-group">
+                <label for="_vote">Votou:</label>
+                <input type="text" name="_vote" id="_vote" class="form-control" placeholder="Ex: true/false">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" onclick="alert('Usuário Cadastrado com Sucesso!\nAcesse a lista de usuários para verificar o cadastro.')">
+            </div>
+
+        </form>
+
         <div class="form-group">
-            <label for="_name">Nome:</label>
-            <input type="text" name="_name" id="_name" class="form-control" placeholder="Ex: Igor Neves">
+            <a href="/list">Lista de Usuários</a>
         </div>
-        <div class="form-group">
-            <label for="_email">E-mail:</label>
-            <input type="text" name="_email" id="_email" class="form-control" placeholder="Ex: igor123@gmail.com">
-        </div>
-        <div class="form-group">
-            <label for="_address">Endereço:</label>
-            <input type="text" name="_address" id="_address" class="form-control" placeholder="Ex: Rua Brasil, 540">
-        </div>
-        <div class="form-group">
-            <label for="_heigth">Altura:</label>
-            <input type="text" name="_heigth" id="_heigth" class="form-control" placeholder="Ex: 1.75">
-        </div>
-        <div class="form-group">
-            <label for="_age">Idade:</label>
-            <input type="text" name="_age" id="_age" class="form-control" placeholder="Ex: 19">
-        </div>
-        <div class="form-group">
-            <label for="_vote">Votou:</label>
-            <input type="text" name="_vote" id="_vote" class="form-control" placeholder="Ex: true/false">
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Enviar"  class="btn btn-primary">
-        </div>
-    </form>
-    
-</div>

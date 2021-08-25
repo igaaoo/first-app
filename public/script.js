@@ -39,7 +39,7 @@ function update(index,link){
     button.addEventListener('click',()=>{
         const http = new XMLHttpRequest(); //XHR - cria um objeto para requisição ao servidor
         const url=link; //"/cadastro/update";
-        let data = {id:"",name:"",email:"",address:"",age:"",heigth:"",vote:""};
+        let data = {id:"",name:"",email:"",address:"",age:"",height:"",vote:""};
         let dataToSend;
 
 
@@ -78,7 +78,7 @@ function update(index,link){
         data.email = inputs[1].value;
         data.address = inputs[2].value;
         data.age = inputs[3].value;
-        data.heigth = inputs[4].value;
+        data.height = inputs[4].value;
         data.vote = inputs[5].value;
 
         dataToSend = JSON.stringify(data); //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON. Se quisesse o objeto no formato binario, usaria: JSON.parse(data)
