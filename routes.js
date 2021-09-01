@@ -34,15 +34,20 @@ router.post('/cadastro/update', (req, res) => {
   console.log("Atualizou um cadastro");
 });
 
-global.usersList =[];
+// global.usersList =[];
 router.get('/list', (req, res) => {
   res.render('pages/list');
+//   console.log("Acessou a lista / Lista:");
+//   for (let cont=0;cont<20;cont++){
+//     usersList[cont] = users[cont];
+//     console.log(JSON.stringify(usersList[cont]));
+// }
+});
 
-  console.log("Acessou a lista / Lista:");
-  for (let cont=0;cont<20;cont++){
-    usersList[cont] = users[cont];
-    console.log(JSON.stringify(usersList[cont]));
-}
+router.get('/listagem', (req,res) => {
+
+  res.json(users);
+
 });
 
 router.post('/cadastro/add',(req,res)=>{

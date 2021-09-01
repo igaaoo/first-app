@@ -116,7 +116,7 @@ function remove(index,name,link){ //(index,link)
     //dataToSend = JSON.stringify({id:index}); //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON
     dataToSend = JSON.stringify({name:name}); //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON
 
-    http.send(dataToSend);//envia dados para o servidor na forma de JSON
+    http.send(dataToSend); //envia dados para o servidor na forma de JSON
 
 
     http.onload = ()=>{ 
@@ -138,8 +138,105 @@ function remove(index,name,link){ //(index,link)
    
 function add(data){
     //Adiciona um dado novo
+}
+
+function list(){
+    let datas;
+ 
+    //Primeira parte: envia mensagem para o servidor pedindo uma listagem dos usuários
+    const http = new XMLHttpRequest();
+
+    http.onreadystatechange = () => {
+        if(http.readyState == 4 && http.status == 200) {
+            datas = JSON.parse(http.response)
+            const tableKeys = Object.keys(datas[0]) //["name", "email", "address", "age", "heigth", "vote"]
+
+            for(let j=0; j<datas.length; j++){    
+                let tableList = document.getElementById("list");
+                let tr = document.createElement("tr"); 
+                
+                //gerar os campos name, email...
+                for(let i = 0; i<tableKeys.length; i++){
+                    let td = document.createElement("td");
+                    let input = document.createElement("input")
+                    let span = document.createElement("span");
+
+                    td.setAttribute("data-index-row", j);
+
+                    span.innerHTML =  Object.values(datas[j])[i]
+                    span.className="show";
+
+                    input.setAttribute("type", "text");
+                    input.setAttribute("name", tableKeys[i])
+                    input.setAttribute("value", Object.values(datas[j])[i])
+                    input.className="hidden";
+
+                    td.appendChild(span);
+                    td.appendChild(input);
+                    tr.appendChild(td);  
+                }
+
+                //botao confirmar
+                let td = document.createElement("td");
+                let input = document.createElement("input");
+
+                td.setAttribute("data-index-row", j);
+                input.setAttribute("type", "button");
+                input.setAttribute('onclick', "window.location.reload()");
+                input.setAttribute("value", "atualizar");
+                td.className = "hidden"
+                input.className = "hidden";
+
+                td.appendChild(input);
+                tr.appendChild(td);
 
 
+                //botao lápis
+                let td1 = document.createElement("td");
+                let a1 = document.createElement("a");
+                let i1 = document.createElement("i");
 
+                td1.setAttribute("data-index-row", j);
+                a1.setAttribute("href", "#");
+                a1.setAttribute('onclick', `update(${j}, '/cadastro/update/')`)
+                a1.className = "show";
+                i1.className = "fas fa-pen";
+
+                a1.appendChild(i1)
+                td1.appendChild(a1)
+                tr.appendChild(td1);
+
+                //botao deletar
+                let td2 = document.createElement("td");
+                let a2 = document.createElement("a");
+                let i2 = document.createElement("i");
+                console.log(`remove(${j}, '${datas[j].name}', '/cadastro/remove/')`)
+                td2.setAttribute("data-index-row", j);
+                a2.setAttribute("href", "#");
+                a2.setAttribute('onclick', `remove(${j}, '${datas[j].name}', '/cadastro/remove/'); window.location.reload()`)
+                a2.className = "show";
+                i2.className = "fas fa-trash-alt";
+
+                a2.appendChild(i2)
+                td2.appendChild(a2)
+                tr.appendChild(td2);
+
+                tableList.appendChild(tr);
+                
+            }
+        }
+    }
+
+    http.open("GET", "/listagem", true);
+
+    http.send();
+
+    // console.log(http.response)
+    //Segunda parte: apos recebimento da lista de usuarios, no formato JSON, colocar os usuarios na interface
+    
 
 }
+   
+list()
+
+
