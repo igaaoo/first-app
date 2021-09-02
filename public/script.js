@@ -113,7 +113,7 @@ function remove(index,name,link){ //(index,link)
     http.open("POST",link,true); //abre uma comunicação com o servidor através de uma requisição POST
     http.setRequestHeader('Content-Type','application/json'); //constroi um cabecalho http para envio dos dados
 
-    //dataToSend = JSON.stringify({id:index}); //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON
+     //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON
     dataToSend = JSON.stringify({name:name}); //transforma o objeto literal em uma string JSON que é a representação em string de um objeto JSON
 
     http.send(dataToSend); //envia dados para o servidor na forma de JSON
@@ -140,6 +140,7 @@ function add(data){
     //Adiciona um dado novo
 }
 
+//List() foi criada com a grande ajuda do Reinaldo
 function list(){
     let datas;
  
@@ -155,7 +156,7 @@ function list(){
                 let tableList = document.getElementById("list");
                 let tr = document.createElement("tr"); 
                 
-                //gerar os campos name, email...
+                //gerar os campos de informações
                 for(let i = 0; i<tableKeys.length; i++){
                     let td = document.createElement("td");
                     let input = document.createElement("input")
@@ -191,7 +192,7 @@ function list(){
                 tr.appendChild(td);
 
 
-                //botao lápis
+                //botao lápis (editar)
                 let td1 = document.createElement("td");
                 let a1 = document.createElement("a");
                 let i1 = document.createElement("i");
@@ -230,10 +231,6 @@ function list(){
     http.open("GET", "/listagem", true);
 
     http.send();
-
-    // console.log(http.response)
-    //Segunda parte: apos recebimento da lista de usuarios, no formato JSON, colocar os usuarios na interface
-    
 
 }
    

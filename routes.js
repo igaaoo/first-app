@@ -34,14 +34,8 @@ router.post('/cadastro/update', (req, res) => {
   console.log("Atualizou um cadastro");
 });
 
-// global.usersList =[];
 router.get('/list', (req, res) => {
   res.render('pages/list');
-//   console.log("Acessou a lista / Lista:");
-//   for (let cont=0;cont<20;cont++){
-//     usersList[cont] = users[cont];
-//     console.log(JSON.stringify(usersList[cont]));
-// }
 });
 
 router.get('/listagem', (req,res) => {
@@ -66,12 +60,7 @@ router.post('/cadastro/add',(req,res)=>{
   console.log("Adicionou um usuário");
 });
 
-// router.get('/cadastro/list', (req,res)=>{
-//   res.render('pages/list');
-// }
-
 router.post('/cadastro/remove',(req,res)=>{
-  //let item =req.body.id; //pega o valor passado através do parâmetro id e atribui a variável item. 
   let name = req.body.name;
   console.log("Removeu um usuário");
   if(users.length==0){
@@ -90,7 +79,6 @@ router.post('/cadastro/remove',(req,res)=>{
                   status:'sucess',
                   data:users
               });
-              //res.send(JSON.stringify({sucess:`Elemento removido com sucesso: ${name}`}));
           } else if(cont==users.length-1){
               console.log("Erro ao remover elemento: ",name);
               return res.status(400).json({
@@ -102,5 +90,4 @@ router.post('/cadastro/remove',(req,res)=>{
   }
 });
 
-//Essa linha permite que este código seja exportado como um módulo e possa ser usado em outras partes da aplicação.
 module.exports = router;
