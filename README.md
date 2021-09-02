@@ -5,6 +5,7 @@ Igor Mourão das Neves, inspirado no código de: Wellington Wagner F. Sarmento. 
 # Colaboradores 
 Mattheus Del Vianple (https://github.com/NovoVerso/AM2)
 <p> Reinaldo da Silva Nascimento (https://github.com/kingnaldoo/First-app) </p>
+Angelo Lucas Freitas Lima (https://github.com/Angelolucasfl/first-app)
 
 # Licença
 Esta aplicação se encontra sob a licença Gnu [Public License Version 3.0](https://github.com/igorNeves007/first-app/blob/main/LICENSE).
